@@ -1,0 +1,21 @@
+.form {
+
+  &-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: $color-black;
+    background-color: $color-white;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    outline: 0;
+    transition: border-color 300ms ease-in-out;
+
+    &:focus {
+      border-color: rgba($color: $primary-color, $alpha: 0.8);
+    }
+  }
+}

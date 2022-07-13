@@ -1,0 +1,36 @@
+$primary-color: #0059BF;
+$secondary-color: #FFCE4E;
+$tertiary-color: #001E42;
+
+$color-white: #FFFFFF;
+$color-black: #000000;
+
+$body-bg-color: $color-white;
+
+$font-family: 'Nunito Sans', sans-serif;
+
+$media-breakpoints: (
+  max: (
+    xs: 576px,
+    sm: 786px,
+    md: 992px,
+    lg: 1200px
+  ),
+  min: (
+    xs: 0,
+    sm: 576px,
+    md: 786px,
+    lg: 992px,
+    xl: 1200px
+  )
+);
+
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+)

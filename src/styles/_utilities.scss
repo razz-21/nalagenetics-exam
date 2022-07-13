@@ -1,0 +1,35 @@
+$margin-positions: (
+  a: "margin",
+  x: "margin-x",
+  y: "margin-y",
+  t: "margin-top",
+  b: "margin-bottom",
+  s: "margin-left",
+  e: "margin-right"
+);
+
+@each $position, $property in $margin-positions {
+  @each $size, $value in $spacers {
+    .m#{$position}-#{$size} {
+      #{$property}: $value
+    }
+  }
+};
+
+$padding-positions: (
+  a: "padding",
+  x: "padding-x",
+  y: "padding-y",
+  t: "padding-top",
+  b: "padding-bottom",
+  s: "padding-left",
+  e: "padding-right"
+);
+
+@each $position, $property in $padding-positions {
+  @each $size, $value in $spacers {
+    .p#{$position}-#{$size} {
+      #{$property}: $value
+    }
+  }
+};

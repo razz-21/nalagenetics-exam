@@ -1,0 +1,42 @@
+@import "variables";
+@import "mixins";
+
+.navbar {
+  display: block;
+  width: 100%;
+  padding: 1.5rem 0;
+  background-color: $primary-color;
+  color: $color-white;
+
+  .container {
+    @include container-maxwidth();
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-title {
+    color: inherit;
+    font-weight: 700;
+  }
+
+  ul.nav-menus {
+    display: inline-flex;
+
+    .nav-menu {
+
+      a {
+        color: inherit;
+        border-radius: 4px;
+        padding: 0.5rem 1.25rem;
+      }
+
+      &.active {
+        a {
+          background-color: rgba($color: $secondary-color, $alpha: 0.9);
+        }
+      }
+    }
+  }
+}
