@@ -1,7 +1,7 @@
 $margin-positions: (
   a: "margin",
-  x: "margin-x",
-  y: "margin-y",
+  x: "margin",
+  y: "margin",
   t: "margin-top",
   b: "margin-bottom",
   s: "margin-left",
@@ -11,15 +11,21 @@ $margin-positions: (
 @each $position, $property in $margin-positions {
   @each $size, $value in $spacers {
     .m#{$position}-#{$size} {
-      #{$property}: $value
+      @if $position == 'x' {
+        #{$property}: 0 $value;
+      } @else if $position =='y'{
+        #{$property}: $value 0;
+      } @else {
+        #{$property}: $value;
+      }
     }
   }
 };
 
 $padding-positions: (
   a: "padding",
-  x: "padding-x",
-  y: "padding-y",
+  x: "padding",
+  y: "padding",
   t: "padding-top",
   b: "padding-bottom",
   s: "padding-left",
@@ -29,7 +35,13 @@ $padding-positions: (
 @each $position, $property in $padding-positions {
   @each $size, $value in $spacers {
     .p#{$position}-#{$size} {
-      #{$property}: $value
+      @if $position == 'x' {
+        #{$property}: 0 $value;
+      } @else if $position =='y'{
+        #{$property}: $value 0;
+      } @else {
+        #{$property}: $value;
+      }
     }
   }
 };

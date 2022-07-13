@@ -1,0 +1,22 @@
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: $primary-color;
+  font-size: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  outline: 0;
+  cursor: pointer;
+
+  transition: ease 300ms;
+
+  &-primary {
+    background-color: $primary-color;
+    color: $color-white;
+
+    &:hover {
+      background-color: $tertiary-color;
+      transition: ease 300ms;
+    }
+  }
+}

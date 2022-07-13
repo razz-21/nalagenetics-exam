@@ -1,0 +1,9 @@
+@each $name, $value in $font-weights {
+  .font-#{ $name } {
+    font-weight: #{ $value };
+  }
+}
+
+.text-muted {
+  color: #848484 !important;
+}
