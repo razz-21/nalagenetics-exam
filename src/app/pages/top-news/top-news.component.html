@@ -1,6 +1,15 @@
-<div class="head-content mb-4">
-  <input type="text" class="form-control" placeholder="Country">
-  <input type="text" class="form-control" placeholder="Category">
+<div class="head-content mb-5">
+  <select class="form-select" [ngModel]="selectedCountry">
+    <option selected disabled>Select Country</option>
+    <ng-template ngFor [ngForOf]="countryList" let-country>
+      <option [value]="country.code">{{ country.name }}</option>
+    </ng-template>
+  </select>
+  <select class="form-select" [ngModel]="selectedCategory">
+    <ng-template ngFor [ngForOf]="categoryList" let-category>
+      <option [value]="category.value">{{ category.name }}</option>
+    </ng-template>
+  </select>
   <input type="text" class="form-control" placeholder="Keyword">
   <button type="button" class="btn btn-primary">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
@@ -9,21 +18,15 @@
       </g>
     </svg>
   </button>
+  <div style="margin-left: auto;">Total Results: 12</div>
 </div>
 
 <div class="content">
-  <div class="news-card">
-    <div class="news-card-image">
-      <img src="/assets/So-Junghwan.jpg" alt="Image">
-    </div>
-    <div class="news-card-body">
-      <h4 class="mb-3">Title here</h4>
-      <h6 class="font-medium mb-3">Sub Title</h6>
-      <p class="news-card-description">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse et at perspiciatis neque ipsa labore pariatur! Ab, in exercitationem reprehenderit omnis asperiores laudantium aut. Quis quae ratione ad illo?
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse et at perspiciatis neque ipsa labore pariatur! Ab, in exercitationem reprehenderit omnis asperiores laudantium aut. Quis quae ratione ad illo?
-      </p>
-      <button type="button" class="btn btn-primary mt-3">Go to page</button>
-    </div>
+  <div class="news-cards-container">
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
   </div>
 </div>

@@ -45,3 +45,17 @@ $padding-positions: (
     }
   }
 };
+
+$widths: (
+  auto: "auto",
+  0: 0,
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+);
+@each $name, $value in $widths {
+  .w-#{$name} {
+    width: #{$value};
+  }
+};

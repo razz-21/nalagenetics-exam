@@ -23,6 +23,7 @@
       "dom"
     ],
     "paths": {
+      "@shared/*": ["./src/app/shared/*"],
       "@components/*": ["./src/app/shared/components/*"],
       "@pages/*": ["./src/app/pages/*"]
     }
