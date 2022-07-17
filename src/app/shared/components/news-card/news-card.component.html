@@ -5,16 +5,15 @@
   </svg>
   </div>
   <div class="news-card-image">
-    <img src="/assets/So-Junghwan.jpg" alt="Image">
+    <img [src]="article.urlToImage" [alt]="article.title" (error)="onErrorArticleImage($event)">
   </div>
   <div class="news-card-body">
-    <h4 class="mb-3">Title here</h4>
-    <h6 class="font-bold mb-0">Sub Title</h6>
-    <h6 class="font-medium text-muted mb-3">Published: 06/22/2022</h6>
+    <h4 class="news-card-title mb-3">{{ article.title }}</h4>
+    <h6 class="font-bold mb-2">{{ article.source.name }}</h6>
+    <h6 class="font-medium text-muted mb-3">Published: {{ article.publishedAt | date:'medium' }}</h6>
     <p class="news-card-description">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse et at perspiciatis neque ipsa labore pariatur! Ab, in exercitationem reprehenderit omnis asperiores laudantium aut. Quis quae ratione ad illo?
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem esse et at perspiciatis neque ipsa labore pariatur! Ab, in exercitationem reprehenderit omnis asperiores laudantium aut. Quis quae ratione ad illo?
+      {{ article.description }}
     </p>
-    <button type="button" class="btn btn-primary mt-3">Go to page</button>
+    <button type="button" class="btn btn-primary mt-auto" (click)="goToPage()">Go to page</button>
   </div>
 </div>

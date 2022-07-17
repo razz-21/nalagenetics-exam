@@ -18,7 +18,7 @@
       </g>
     </svg>
   </button>
-  <div id="totalResultsLabel">Total Results: 12</div>
+  <div id="totalResultsLabel">Total Results: {{ totalNewsArticles }}</div>
 </div>
 
 <div class="content">
@@ -27,11 +27,9 @@
   </ng-template>
   <ng-template #showCards>
     <div class="news-cards-container">
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
-      <app-news-card></app-news-card>
+      <ng-template ngFor [ngForOf]="articles" let-article>
+        <app-news-card [article]="article"></app-news-card>
+      </ng-template>
     </div>
   </ng-template>
 </div>

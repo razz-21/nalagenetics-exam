@@ -7,9 +7,11 @@ $margin-positions: (
   s: "margin-left",
   e: "margin-right"
 );
+$margin-extras-spacer: (auto: auto);
+$margin-spacers: map-merge($spacers, $margin-extras-spacer);
 
 @each $position, $property in $margin-positions {
-  @each $size, $value in $spacers {
+  @each $size, $value in $margin-spacers {
     .m#{$position}-#{$size} {
       @if $position == 'x' {
         #{$property}: 0 $value;

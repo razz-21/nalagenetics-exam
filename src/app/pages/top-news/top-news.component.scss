@@ -26,6 +26,7 @@
   .news-cards-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 520px);
     gap: 1.25rem;
   }
 }
