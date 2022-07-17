@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '@environments/environment';
 import { NewsParams } from './models/news-params.interface';
 import { NewsResponse } from './models/news-response.interface';
-import { NewsArticle } from './models/news-article.interace';
+import { NewsArticle } from './models/news-article.inteface';
 
 @Injectable({
   providedIn: 'root'

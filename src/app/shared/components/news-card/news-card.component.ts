@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NewsArticle } from '@services/models/news-article.interace';
+import { NewsArticle } from '@services/models/news-article.inteface';
 
 @Component({
   selector: 'app-news-card',

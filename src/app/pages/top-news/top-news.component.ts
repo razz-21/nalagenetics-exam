@@ -5,7 +5,7 @@ import { NewsParams } from "@services/models/news-params.interface";
 
 /* Services */
 import { NewsService } from "@services/news.service";
-import { NewsArticle } from '@services/models/news-article.interace';
+import { NewsArticle } from '@services/models/news-article.inteface';
 import { Subscription } from 'rxjs';
 
 @Component({

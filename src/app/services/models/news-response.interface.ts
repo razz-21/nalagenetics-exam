@@ -1,4 +1,4 @@
-import { NewsArticle } from "./news-article.interace";
+import { NewsArticle } from "./news-article.inteface";
 
 export interface NewsResponse {
   articles: NewsArticle[],
