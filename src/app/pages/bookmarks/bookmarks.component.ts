@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsArticle } from '@services/models/news-article.interace';
+import { NewsService } from '@services/news.service';
+
+/* Services */
 
 @Component({
   selector: 'app-bookmarks',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookmarksComponent implements OnInit {
 
-  constructor() { }
+  bookmarkedArticles: NewsArticle[] = [];
+
+  constructor(
+    private newsService: NewsService
+  ) { }
 
   ngOnInit(): void {
+    this.newsService.bookMarksArticles$.subscribe((articles) => {
+      this.bookmarkedArticles = articles;
+    })
+  }
+
+  onBookMarkedArticle(article: NewsArticle): void {
+    this.newsService.addBookmark(article);
+  }
+
+  onUnbookMarkedArticle(article: NewsArticle): void {
+    this.newsService.removeBookmark(article);
   }
 
 }

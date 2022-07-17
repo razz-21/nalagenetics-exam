@@ -1,1 +1,17 @@
-<p>Bookmark page!!</p>
+<div class="head-content mb-5">
+  <div id="totalResultsLabel">Total Bookmarked News: {{ bookmarkedArticles.length }}</div>
+</div>
+
+<div class="content">
+  <ng-template [ngIf]="bookmarkedArticles.length === 0" [ngIfElse]="showCards">
+    <p class="text-center">No Result Found.</p>
+  </ng-template>
+  <ng-template #showCards>
+    <div class="bookmarked-news-article-container">
+      <ng-template ngFor [ngForOf]="bookmarkedArticles" let-article>
+        <app-news-card [article]="article" [isBookMarked]="bookmarkedArticles.includes(article)"
+          (bookmarkedArticle)="onBookMarkedArticle($event)" (unbookmartkedArticle)="onUnbookMarkedArticle($event)"></app-news-card>
+      </ng-template>
+    </div>
+  </ng-template>
+</div>

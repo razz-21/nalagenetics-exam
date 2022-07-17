@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewsArticle } from '@services/models/news-article.interace';
 
 @Component({
@@ -9,10 +9,17 @@ import { NewsArticle } from '@services/models/news-article.interace';
 export class NewsCardComponent implements OnInit {
 
   @Input() article!: NewsArticle;
+  @Input() isBookMarked = false;
+  @Output() bookmarkedArticle: EventEmitter<NewsArticle> = new EventEmitter<NewsArticle>();
+  @Output() unbookmartkedArticle: EventEmitter<NewsArticle> = new EventEmitter<NewsArticle>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  bookMarkArticle(): void {
+    this.isBookMarked ? this.unbookmartkedArticle.emit(this.article) : this.bookmarkedArticle.emit(this.article);
   }
 
   goToPage(): void {

@@ -32,11 +32,13 @@
     <ng-template #showCards>
       <div class="news-cards-container">
         <ng-template ngFor [ngForOf]="articles" let-article>
-          <app-news-card [article]="article"></app-news-card>
+          <app-news-card [article]="article" [isBookMarked]="booksMarkedArticles.includes(article)"
+            (bookmarkedArticle)="onBookMarkedArticle($event)" (unbookmartkedArticle)="onUnbookMarkedArticle($event)"></app-news-card>
         </ng-template>
       </div>
     </ng-template>
-    <app-pagination [page]="page" [pageSize]="pageSize" [totalSize]="totalNewsArticles"
-      (selectPageNumber)="onSelectPageNumber($event)"></app-pagination>
   </ng-template>
+
+  <app-pagination [page]="page" [pageSize]="pageSize" [totalSize]="totalNewsArticles"
+      (selectPageNumber)="onSelectPageNumber($event)"></app-pagination>
 </div>

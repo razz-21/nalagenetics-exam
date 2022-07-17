@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { countries } from "./country.data";
 import { categories} from "./category.data";
 import { NewsParams } from "@services/models/news-params.interface";
@@ -13,9 +13,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './top-news.component.html',
   styleUrls: ['./top-news.component.scss']
 })
-export class TopNewsComponent implements OnInit {
+export class TopNewsComponent implements OnInit, OnDestroy {
 
   articles: NewsArticle[] = [];
+  booksMarkedArticles: NewsArticle[] = [];
   totalNewsArticles = 0;
   countryList = countries;
   categoryList = categories;
@@ -36,6 +37,7 @@ export class TopNewsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getBookMarkArticles();
     this.getNews();
   }
 
@@ -55,6 +57,19 @@ export class TopNewsComponent implements OnInit {
     })
   }
 
+  getBookMarkArticles(): void {
+    this.newsService.bookMarksArticles$.subscribe((articles) => {
+      this.booksMarkedArticles = articles;
+    })
+  }
+
+  onBookMarkedArticle(article: NewsArticle): void {
+    this.newsService.addBookmark(article);
+  }
+
+  onUnbookMarkedArticle(article: NewsArticle): void {
+    this.newsService.removeBookmark(article);
+  }
 
   onSelectPageNumber(pageNumber: number) {
     this.page = pageNumber;
@@ -64,6 +79,10 @@ export class TopNewsComponent implements OnInit {
       top: 0,
       behavior: "smooth"
     });
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();
   }
 
 }
