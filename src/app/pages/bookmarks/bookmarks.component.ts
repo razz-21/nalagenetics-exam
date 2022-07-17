@@ -23,6 +23,10 @@ export class BookmarksComponent implements OnInit {
     })
   }
 
+  isBookmarked(article: NewsArticle): boolean {
+    return this.bookmarkedArticles.map((article) => article.title).includes(article.title);
+  }
+
   onBookMarkedArticle(article: NewsArticle): void {
     this.newsService.addBookmark(article);
   }

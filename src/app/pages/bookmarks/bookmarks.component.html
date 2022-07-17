@@ -9,7 +9,7 @@
   <ng-template #showCards>
     <div class="bookmarked-news-article-container">
       <ng-template ngFor [ngForOf]="bookmarkedArticles" let-article>
-        <app-news-card [article]="article" [isBookMarked]="bookmarkedArticles.includes(article)"
+        <app-news-card [article]="article" [isBookMarked]="isBookmarked(article)"
           (bookmarkedArticle)="onBookMarkedArticle($event)" (unbookmartkedArticle)="onUnbookMarkedArticle($event)"></app-news-card>
       </ng-template>
     </div>

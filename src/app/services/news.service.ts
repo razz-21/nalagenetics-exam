@@ -22,6 +22,9 @@ export class NewsService {
     })
   }
 
+  /**
+   * @param params request parameters
+   */
   getNews(params: (NewsParams | {}) = {}): Observable<NewsResponse> {
     let httpParams = new HttpParams();
 
@@ -38,11 +41,17 @@ export class NewsService {
       `${environment.API_NEWS_BASE_URL}/top-headlines?apiKey=${environment.API_NEWS_KEY}`, { params: httpParams });
   }
 
+  /**
+   * @param article article that will be added to bookMarksArticles data.
+   */
   addBookmark(article: NewsArticle): void {
     this.bookMarksArticles.push(article);
     this.bookMarksArticles$.next(this.bookMarksArticles);
   }
 
+  /**
+   * @param article article that will be removed to bookMarksArticles data.
+   */
   removeBookmark(article: NewsArticle): void {
     const newBookmarkedArticle = this.bookMarksArticles.filter((bookMarkedArticle) => JSON.stringify(bookMarkedArticle) !== JSON.stringify(article));
     this.bookMarksArticles$.next(newBookmarkedArticle);

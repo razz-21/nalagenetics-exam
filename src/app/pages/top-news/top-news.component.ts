@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { countries } from "./country.data";
 import { categories} from "./category.data";
 import { NewsParams } from "@services/models/news-params.interface";
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class TopNewsComponent implements OnInit, OnDestroy {
 
   articles: NewsArticle[] = [];
-  booksMarkedArticles: NewsArticle[] = [];
+  bookMarkedArticles: NewsArticle[] = [];
   totalNewsArticles = 0;
   countryList = countries;
   categoryList = categories;
@@ -30,15 +30,17 @@ export class TopNewsComponent implements OnInit, OnDestroy {
 
   isLoading = true;
 
-  subscription!: Subscription;
+  newsArticleSubscription!: Subscription;
+  bookmarkedArticleSubscription!: Subscription;
 
   constructor(
-    private newsService: NewsService
+    private newsService: NewsService,
+    private cdrf: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.getBookMarkArticles();
     this.getNews();
+    this.getBookMarkArticles();
   }
 
   getNews(): void {
@@ -50,17 +52,29 @@ export class TopNewsComponent implements OnInit, OnDestroy {
       pageSize: this.pageSize
 
     }
-    this.subscription = this.newsService.getNews(newsParams).subscribe((res) => {
+    this.newsArticleSubscription = this.newsService.getNews(newsParams).subscribe((res) => {
       this.articles = res.articles;
       this.totalNewsArticles = res.totalResults;
       this.isLoading = false;
     })
   }
 
+  /**
+   * Get the bookmarked articles from the news service
+   */
   getBookMarkArticles(): void {
-    this.newsService.bookMarksArticles$.subscribe((articles) => {
-      this.booksMarkedArticles = articles;
+    this.bookmarkedArticleSubscription = this.newsService.bookMarksArticles$.subscribe((articles) => {
+      this.bookMarkedArticles = articles;
     })
+  }
+
+  /**
+   *
+   * @param article needed for condition
+   * @returns boolean if an article has the same title. Will marked as bookmarked article if the condition is met.
+   */
+  isBookmarked(article: NewsArticle): boolean {
+    return this.bookMarkedArticles.map((article) => article.title).includes(article.title);
   }
 
   onBookMarkedArticle(article: NewsArticle): void {
@@ -69,6 +83,10 @@ export class TopNewsComponent implements OnInit, OnDestroy {
 
   onUnbookMarkedArticle(article: NewsArticle): void {
     this.newsService.removeBookmark(article);
+  }
+
+  resetPage(): void {
+    this.page = 1;
   }
 
   onSelectPageNumber(pageNumber: number) {
@@ -82,7 +100,8 @@ export class TopNewsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.subscription.unsubscribe();
+    this.newsArticleSubscription.unsubscribe();
+    this.bookmarkedArticleSubscription.unsubscribe();
   }
 
 }

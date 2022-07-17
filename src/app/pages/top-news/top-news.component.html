@@ -1,16 +1,16 @@
 <div class="head-content mb-5">
-  <select class="form-select" [(ngModel)]="selectedCountry" (change)="getNews()">
+  <select class="form-select" [(ngModel)]="selectedCountry" (change)="resetPage();getNews()">
     <option selected disabled>Select Country</option>
     <ng-template ngFor [ngForOf]="countryList" let-country>
       <option [value]="country.code">{{ country.name }}</option>
     </ng-template>
   </select>
-  <select class="form-select" [(ngModel)]="selectedCategory" (change)="getNews()">
+  <select class="form-select" [(ngModel)]="selectedCategory" (change)="resetPage();getNews()">
     <ng-template ngFor [ngForOf]="categoryList" let-category>
       <option [value]="category.value">{{ category.name }}</option>
     </ng-template>
   </select>
-  <input type="text" class="form-control" placeholder="Keyword" [(ngModel)]="searchKeywork" (keyup.enter)="getNews()">
+  <input type="text" class="form-control" placeholder="Keyword" [(ngModel)]="searchKeywork" (keyup.enter)="resetPage();getNews()">
   <button type="button" class="btn btn-primary" (click)="getNews()">
     <svg width="18" height="18" viewBox="0 0 24  24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
       <g id="24 / basic / search">
@@ -32,7 +32,7 @@
     <ng-template #showCards>
       <div class="news-cards-container">
         <ng-template ngFor [ngForOf]="articles" let-article>
-          <app-news-card [article]="article" [isBookMarked]="booksMarkedArticles.includes(article)"
+          <app-news-card [article]="article" [isBookMarked]="isBookmarked(article)"
             (bookmarkedArticle)="onBookMarkedArticle($event)" (unbookmartkedArticle)="onUnbookMarkedArticle($event)"></app-news-card>
         </ng-template>
       </div>

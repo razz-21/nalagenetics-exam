@@ -9,14 +9,13 @@ import { NewsArticle } from '@services/models/news-article.interace';
 export class NewsCardComponent implements OnInit {
 
   @Input() article!: NewsArticle;
-  @Input() isBookMarked = false;
+  @Input() isBookMarked = true;
   @Output() bookmarkedArticle: EventEmitter<NewsArticle> = new EventEmitter<NewsArticle>();
   @Output() unbookmartkedArticle: EventEmitter<NewsArticle> = new EventEmitter<NewsArticle>();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   bookMarkArticle(): void {
     this.isBookMarked ? this.unbookmartkedArticle.emit(this.article) : this.bookmarkedArticle.emit(this.article);
