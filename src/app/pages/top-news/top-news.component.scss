@@ -21,6 +21,8 @@
 }
 
 .content {
+  padding-bottom: 5rem;
+
   .news-cards-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

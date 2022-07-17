@@ -1,11 +1,11 @@
 <div class="head-content mb-5">
-  <select class="form-select" [ngModel]="selectedCountry">
+  <select class="form-select" [(ngModel)]="selectedCountry">
     <option selected disabled>Select Country</option>
     <ng-template ngFor [ngForOf]="countryList" let-country>
       <option [value]="country.code">{{ country.name }}</option>
     </ng-template>
   </select>
-  <select class="form-select" [ngModel]="selectedCategory">
+  <select class="form-select" [(ngModel)]="selectedCategory">
     <ng-template ngFor [ngForOf]="categoryList" let-category>
       <option [value]="category.value">{{ category.name }}</option>
     </ng-template>
