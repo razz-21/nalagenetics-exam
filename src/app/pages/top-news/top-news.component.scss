@@ -1,11 +1,22 @@
+@import "variables";
+@import "breakpoints";
+
 .head-content {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   column-gap: 1rem;
 
-  input {
+  select, input {
     max-width: 240px;
+    width: 100%;
+  }
+  select {
+    white-space: nowrap;
+  }
+
+  #totalResultsLabel {
+    margin-left: auto;
   }
 }
 
@@ -14,5 +25,39 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
+  }
+}
+
+@include media-breakpoint-max(sm) {
+  .content {
+    .news-cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+}
+
+@include media-breakpoint-max(xs) {
+  .head-content {
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    select, input {
+      max-width: 100%;
+    }
+
+    #totalResultsLabel, button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .content {
+    .news-cards-container {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
   }
 }

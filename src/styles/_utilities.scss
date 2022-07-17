@@ -59,3 +59,21 @@ $widths: (
     width: #{$value};
   }
 };
+
+$textPositions: (
+  "center",
+  "left",
+  "start",
+  "right",
+  "auto",
+  "justify",
+  "revert",
+  "inherit",
+  "initial",
+  "unset"
+);
+@each $position in $textPositions {
+  .text-#{$position} {
+    text-align: #{$position};
+  }
+}

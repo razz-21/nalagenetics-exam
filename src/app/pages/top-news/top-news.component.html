@@ -18,15 +18,20 @@
       </g>
     </svg>
   </button>
-  <div style="margin-left: auto;">Total Results: 12</div>
+  <div id="totalResultsLabel">Total Results: 12</div>
 </div>
 
 <div class="content">
-  <div class="news-cards-container">
-    <app-news-card></app-news-card>
-    <app-news-card></app-news-card>
-    <app-news-card></app-news-card>
-    <app-news-card></app-news-card>
-    <app-news-card></app-news-card>
-  </div>
+  <ng-template [ngIf]="isLoading" [ngIfElse]="showCards">
+    <p class="text-center">Loading...</p>
+  </ng-template>
+  <ng-template #showCards>
+    <div class="news-cards-container">
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+      <app-news-card></app-news-card>
+    </div>
+  </ng-template>
 </div>

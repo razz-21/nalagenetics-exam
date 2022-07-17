@@ -15,10 +15,15 @@ export class TopNewsComponent implements OnInit {
   selectedCountry = "ph";
   selectedCategory = "";
 
+  isLoading = true;
+
 
   constructor() {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
   }
 
 }
