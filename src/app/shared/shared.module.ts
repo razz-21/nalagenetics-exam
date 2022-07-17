@@ -6,11 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { NewsCardComponent } from '@components/news-card/news-card.component';
 import { NavBarComponent } from '@components/nav-bar/nav-bar.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     NewsCardComponent,
-    NavBarComponent
+    NavBarComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { NavBarComponent } from '@components/nav-bar/nav-bar.component';
   providers: [],
   exports: [
     NewsCardComponent,
-    NavBarComponent
+    NavBarComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

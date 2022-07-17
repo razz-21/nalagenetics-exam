@@ -1,0 +1,6 @@
+<div class="pagination-container" *ngIf="totalPageInArray.length > 1">
+  <ng-template ngFor [ngForOf]="totalPageInArray" let-pageNumber>
+    <div class="pagination-item" [ngClass]="{ 'active': pageNumber === page }" (click)="selectPage(pageNumber)">
+      {{ pageNumber }}</div>
+  </ng-template>
+</div>

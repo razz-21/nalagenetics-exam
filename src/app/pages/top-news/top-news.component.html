@@ -1,18 +1,18 @@
 <div class="head-content mb-5">
-  <select class="form-select" [(ngModel)]="selectedCountry">
+  <select class="form-select" [(ngModel)]="selectedCountry" (change)="getNews()">
     <option selected disabled>Select Country</option>
     <ng-template ngFor [ngForOf]="countryList" let-country>
       <option [value]="country.code">{{ country.name }}</option>
     </ng-template>
   </select>
-  <select class="form-select" [(ngModel)]="selectedCategory">
+  <select class="form-select" [(ngModel)]="selectedCategory" (change)="getNews()">
     <ng-template ngFor [ngForOf]="categoryList" let-category>
       <option [value]="category.value">{{ category.name }}</option>
     </ng-template>
   </select>
-  <input type="text" class="form-control" placeholder="Keyword">
-  <button type="button" class="btn btn-primary">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+  <input type="text" class="form-control" placeholder="Keyword" [(ngModel)]="searchKeywork" (keyup.enter)="getNews()">
+  <button type="button" class="btn btn-primary" (click)="getNews()">
+    <svg width="18" height="18" viewBox="0 0 24  24" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
       <g id="24 / basic / search">
         <path id="icon" fill-rule="evenodd" clip-rule="evenodd" d="M10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10C18 11.8487 17.3729 13.551 16.3199 14.9056L21.7071 20.2929L20.2929 21.7071L14.9056 16.3199C13.551 17.3729 11.8487 18 10 18ZM16 10C16 13.3137 13.3137 16 10 16C6.68629 16 4 13.3137 4 10C4 6.68629 6.68629 4 10 4C13.3137 4 16 6.68629 16 10Z" fill="#FFFFFF"/>
       </g>
@@ -22,14 +22,21 @@
 </div>
 
 <div class="content">
-  <ng-template [ngIf]="isLoading" [ngIfElse]="showCards">
+  <ng-template [ngIf]="isLoading" [ngIfElse]="showContent">
     <p class="text-center">Loading...</p>
   </ng-template>
-  <ng-template #showCards>
-    <div class="news-cards-container">
-      <ng-template ngFor [ngForOf]="articles" let-article>
-        <app-news-card [article]="article"></app-news-card>
-      </ng-template>
-    </div>
+  <ng-template #showContent>
+    <ng-template [ngIf]="totalNewsArticles === 0" [ngIfElse]="showCards">
+      <p class="text-center">No Result Found.</p>
+    </ng-template>
+    <ng-template #showCards>
+      <div class="news-cards-container">
+        <ng-template ngFor [ngForOf]="articles" let-article>
+          <app-news-card [article]="article"></app-news-card>
+        </ng-template>
+      </div>
+    </ng-template>
+    <app-pagination [page]="page" [pageSize]="pageSize" [totalSize]="totalNewsArticles"
+      (selectPageNumber)="onSelectPageNumber($event)"></app-pagination>
   </ng-template>
 </div>
